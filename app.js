@@ -31,9 +31,33 @@ const locales = [
 
 // Agregar marcadores al mapa
 
+// Agregar evento a cada marcador
 locales.forEach((local) => {
   const marker = L.marker(local.coordenadas).addTo(map);
-  marker.bindPopup(`<b>${local.nombre}</b><br>${local.direccion}`);
+  marker.bindPopup(`<b>${local.nombre}</b><br><span>${local.direccion}</span>`);
+
+  // Listen for the popup opening event
+  marker.on("popupopen", (e) => {
+    const popupContent = e.popup.getContent(); // Get the popup content
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = popupContent; // Create a temporary div to parse content
+
+    const nombreLocal = tempDiv.querySelector("b")?.textContent || "";
+    const direLocal = tempDiv.querySelector("span")?.textContent || "";
+
+    if (nombreLocal && direLocal) {
+      document.querySelector("#infoNombre").textContent = nombreLocal;
+      document.querySelector("#infoDireccion").textContent = direLocal;
+    }
+  });
+});
+
+// Mostrar tarjeta de información al hacer clic en un marcador
+map.on("popupopen", () => {
+  const infoCard = document.querySelector(".info");
+  if (infoCard) {
+    infoCard.classList.remove("hidden");
+  }
 });
 
 // Buscar local por ID
