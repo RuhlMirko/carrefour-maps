@@ -30,6 +30,7 @@ const locales = [
 ];
 
 // Agregar marcadores al mapa
+
 locales.forEach((local) => {
   const marker = L.marker(local.coordenadas).addTo(map);
   marker.bindPopup(`<b>${local.nombre}</b><br>${local.direccion}`);
@@ -47,6 +48,23 @@ function buscarLocalPorId(id) {
     alert("No se encontró el local con ID " + id);
   }
 }
+
+marcaLocales = document.querySelectorAll(".leaflet-marker-icon");
+
+function doSomething() {
+  console.log("Got a click");
+}
+
+function showDisplay() {
+  let infoCard = document.querySelector(".info");
+  infoCard.classList.remove("hidden");
+}
+
+marcaLocales.forEach((local) => {
+  local.addEventListener("click", showDisplay);
+});
+
+// '.leaflet-popup-close-button'
 
 // Simulación de búsqueda (prueba con ID 1, 2 o 3 en la consola)
 // buscarLocalPorId(1);
