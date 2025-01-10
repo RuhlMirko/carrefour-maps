@@ -1,18 +1,18 @@
 body {
-  background-color: rgb(82, 123, 238);
+  background-color: #e0e7da;
   display: flex;
 }
 
 #map {
-  height: 90vh;
-  width: 70%;
+  height: 97vh;
+  width: 100%;
   border: solid 2px black;
   border-radius: 20px;
 }
 
 .info {
-  width: 50%;
+  width: 30%;
   padding: 20px;
-  color: white;
+  color: #000000;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
